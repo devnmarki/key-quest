@@ -1,0 +1,26 @@
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Key Quest.exe
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Key Quest.deps.json
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Key Quest.runtimeconfig.json
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Key Quest.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Key Quest.pdb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\MonoGame.Framework.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.csproj.AssemblyReference.cache
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.AssemblyInfoInputs.cache
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.AssemblyInfo.cs
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.csproj.CoreCompileInputs.cache
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.csproj.CopyComplete
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\refint\Key Quest.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.pdb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.genruntimeconfig.cache
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\ref\Key Quest.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\test\bob.xnb

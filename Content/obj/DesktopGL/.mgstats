@@ -1,0 +1,2 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/test/bob.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/test/bob.xnb","TextureProcessor","Texture2DContent",127,341,0.1823164
