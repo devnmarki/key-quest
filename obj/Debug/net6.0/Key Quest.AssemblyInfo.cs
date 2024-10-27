@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Key Quest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2d4f310ff68b7893e54f2df00046ca10501ea81")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26d62f005c951ba4c63096f1923fe98b27509aa3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Key Quest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Key Quest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

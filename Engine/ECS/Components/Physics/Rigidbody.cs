@@ -68,25 +68,25 @@ public class Rigidbody : Component
         {
             if (current.GetBounds().Right >= other.GetBounds().Left && current.GetBounds().Left <= other.GetBounds().Left)
             {
-                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - current.Size.X;
+                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - current.Size.X - current.Offset.X + other.Offset.X;
             }
 
             if (current.GetBounds().Left <= other.GetBounds().Right && current.GetBounds().Right >= other.GetBounds().Right)
             {
-                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X;
+                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X - current.Offset.X + other.Offset.X;
             }
         }
         else
         {
             if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top)
             {
-                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y;
+                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y - current.Offset.Y + other.Offset.Y;
                 Velocity.Y = 0f;
             }
 
             if (current.GetBounds().Top <= other.GetBounds().Bottom && current.GetBounds().Bottom >= other.GetBounds().Bottom)
             {
-                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y;
+                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y - current.Offset.Y + other.Offset.Y;
                 Velocity.Y = 0f;
             }
         }
