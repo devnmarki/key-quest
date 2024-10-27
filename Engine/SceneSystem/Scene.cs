@@ -30,22 +30,14 @@ public class Scene
     
     public virtual void Start()
     {
-        foreach (GameObject gameObject in _gameObjects)
-        {
-            foreach (Component component in gameObject.Components)
-            {
-                component.OnStart();
-            }
-        }
+        
     }
 
     public virtual void Update()
     {
-        List<GameObject> gameObjectsCopy = new List<GameObject>(_gameObjects);
-        foreach (GameObject gameObject in gameObjectsCopy)
+        foreach (GameObject gameObject in _gameObjects)
         {
-            List<Component> componentsCopy = new List<Component>(gameObject.Components);
-            foreach (Component component in componentsCopy)
+            foreach (Component component in gameObject.Components)
             {
                 component.OnUpdate();
             }
@@ -54,11 +46,9 @@ public class Scene
 
     public virtual void Render()
     {
-        List<GameObject> gameObjectsCopy = new List<GameObject>(_gameObjects);
-        foreach (GameObject gameObject in gameObjectsCopy)
+        foreach (GameObject gameObject in _gameObjects)
         {
-            List<Component> componentsCopy = new List<Component>(gameObject.Components);
-            foreach (Component component in componentsCopy)
+            foreach (Component component in gameObject.Components)
             {
                 component.OnDraw();
             }

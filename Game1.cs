@@ -48,6 +48,8 @@ public class Game1 : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
+        Config.Time = gameTime;
+        
         KeyboardHandler.GetState();
         
         if (KeyboardHandler.IsPressed(Keys.Q))
