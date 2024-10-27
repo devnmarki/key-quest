@@ -24,3 +24,6 @@ D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.pdb
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.genruntimeconfig.cache
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\ref\Key Quest.dll
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\test\bob.xnb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.sourcelink.json
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\TiledSharp.dll
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\tilesets\tileset.xnb

@@ -1,22 +1,23 @@
+using System;
+
 namespace Key_Quest.Engine.ECS.Components;
 
 public class Component
 {
-    protected GameObject GameObject { get; private set; }
+    public GameObject GameObject { get; internal set; }
     
     public Component()
     {
         
     }
 
-    public void SetGameObject(GameObject gameObject)
-    {
-        GameObject = gameObject;
-    }
-
     public virtual void OnStart()
     {
-        
+        if (GameObject == null)
+        {
+            Console.WriteLine("Game Object is null in current component! Component: " + this);
+            return;
+        }   
     }
 
     public virtual void OnUpdate()

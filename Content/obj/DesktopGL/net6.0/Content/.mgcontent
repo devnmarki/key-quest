@@ -5,8 +5,10 @@
   <Config />
   <SourceFiles>
     <File>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/test/bob.png</File>
+    <File>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/tileset.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

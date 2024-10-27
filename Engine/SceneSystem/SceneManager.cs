@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Key_Quest.Engine.ECS;
+using Key_Quest.Engine.ECS.Components;
 
 namespace Key_Quest.Engine.SceneSystem;
 
@@ -22,6 +24,13 @@ public class SceneManager
     {
         _currentScene.GameObjects.Clear();
         _currentScene.Start();
+        foreach (GameObject gameObject in _currentScene.GameObjects)
+        {
+            foreach (Component component in gameObject.Components)
+            {
+                component.OnStart();
+            }
+        }
     }
 
     public static void ChangeScene(string sceneName)
