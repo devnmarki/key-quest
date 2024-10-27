@@ -18,12 +18,12 @@ public class Scene
         
     }
 
-    protected void AddGameObject(GameObject gameObject)
+    public void AddGameObject(GameObject gameObject)
     {
         _gameObjects.Add(gameObject);
     }
 
-    protected void RemoveGameObject(GameObject gameObject)
+    public void RemoveGameObject(GameObject gameObject)
     {
         _gameObjects.Remove(gameObject);
     }

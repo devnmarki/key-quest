@@ -7,7 +7,7 @@ namespace Key_Quest.Engine.ECS.Components.Physics;
 
 public class Rigidbody : Component
 {
-    public Vector2 Velocity { get; set; } = Vector2.Zero;
+    public Vector2 Velocity = Vector2.Zero;
     public float Mass { get; set; } = 1f;
     public bool UseGravity { get; set; } = true;
 
@@ -40,8 +40,6 @@ public class Rigidbody : Component
         CheckCollision(Axis.Vertical);
         
         Velocity *= 0.98f;
-        
-        
     }
 
     private void CheckCollision(Axis axis)
@@ -83,11 +81,13 @@ public class Rigidbody : Component
             if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top)
             {
                 GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y;
+                Velocity.Y = 0f;
             }
 
             if (current.GetBounds().Top <= other.GetBounds().Bottom && current.GetBounds().Bottom >= other.GetBounds().Bottom)
             {
                 GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y;
+                Velocity.Y = 0f;
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using Key_Quest.Engine;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Engine.Input;
@@ -23,27 +24,20 @@ public class PlayerController : Component
     {
         base.OnUpdate();
         
-        if (KeyboardHandler.IsDown(Keys.A))
+        if (KeyboardHandler.IsDown(Keys.Left))
             input.X = -1f;
-        else if (KeyboardHandler.IsDown(Keys.D))
+        else if (KeyboardHandler.IsDown(Keys.Right))
             input.X = 1f;
         else
             input.X = 0f;
 
-        if (KeyboardHandler.IsDown(Keys.W))
-            input.Y = -1f;
-        else if (KeyboardHandler.IsDown(Keys.S))
-            input.Y = 1f;
-        else
-            input.Y = 0f;
-        
-        if (input.X != 0 && input.Y != 0)
+        float jumpForce = 500f;
+        if (KeyboardHandler.IsPressed(Keys.Z))
         {
-            input.X *= 0.7f;
-            input.Y *= 0.7f;
+            _rb.Velocity = new Vector2(_rb.Velocity.X, -jumpForce);
         }
         
-        float moveSpeed = 500f;
-        _rb.Velocity = new Vector2(input.X * moveSpeed, input.Y * moveSpeed);
+        float moveSpeed = 200f;
+        _rb.Velocity = new Vector2(input.X * moveSpeed, _rb.Velocity.Y);
     }
 }

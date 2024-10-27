@@ -30,31 +30,11 @@ public class SpriteRenderer : Component
         
         if (!_flip)
         {
-            Config.Batch.Draw(
-                _sprite,
-                GameObject.Transform.Position,
-                null,
-                Color.White,
-                GameObject.Transform.Rotation,
-                Vector2.Zero,
-                GameObject.Transform.Scale,
-                SpriteEffects.None,
-                0f
-            );
+            Config.Batch.Draw(_sprite, new Vector2(GameObject.Transform.Position.X - Config.CameraX, GameObject.Transform.Position.Y - Config.CameraY), null, Color.White, 0f, Vector2.Zero, GameObject.Transform.Scale, SpriteEffects.None, 0f);
         }
         else
         {
-            Config.Batch.Draw(
-                _sprite,
-                GameObject.Transform.Position,
-                null,
-                Color.White,
-                GameObject.Transform.Rotation,
-                Vector2.Zero,
-                GameObject.Transform.Scale,
-                SpriteEffects.FlipHorizontally,
-                0f
-            );
+            Config.Batch.Draw(_sprite, new Vector2(GameObject.Transform.Position.X - Config.CameraX, GameObject.Transform.Position.Y - Config.CameraY), null, Color.White, 0f, Vector2.Zero, GameObject.Transform.Scale, SpriteEffects.FlipHorizontally, 0f);
         }
             
     }

@@ -10,11 +10,15 @@ public class Config
     public static ContentManager Content { get; set; }
     public static GraphicsDevice Graphics { get; set; }
 
-    public static int WindowWidth { get; set; } = 1280;
-    public static int WindowHeight { get; set; } = 720;
+    public static int WindowWidth { get; set; } = 768;
+    public static int WindowHeight { get; set; } = 768;
     public static GameTime Time { get; set; }
+    public static float GameScale { get; set; } = 4f;
 
-    public static Vector2 GravityScale { get; set; } = new Vector2(0f, 9.81f);
+    public static Vector2 GravityScale { get; set; } = new Vector2(0f, 30f);
+
+    public static float CameraX { get; set; } = 0f;
+    public static float CameraY { get; set; } = 0f;
     
     public static Texture2D PixelTexture { get; private set; }
     

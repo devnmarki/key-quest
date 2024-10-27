@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/test/bob.png</SourceFile>
-  <SourceTime>2024-10-26T19:25:14.0993087+02:00</SourceTime>
-  <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/test/bob.xnb</DestFile>
-  <DestTime>2024-10-27T10:08:57.9146208+01:00</DestTime>
+  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/tileset.png</SourceFile>
+  <SourceTime>2024-10-27T09:52:27.7639293+01:00</SourceTime>
+  <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/tilesets/tileset.xnb</DestFile>
+  <DestTime>2024-10-27T10:09:29.0739832+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
