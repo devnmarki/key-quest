@@ -4,10 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/knight_spritesheet.png</File>
     <File>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/test/bob.png</File>
     <File>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/tileset.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

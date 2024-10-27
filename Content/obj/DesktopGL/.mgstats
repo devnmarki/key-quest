@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/test/bob.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/test/bob.xnb","TextureProcessor","Texture2DContent",127,341,0.3808497
-"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/tileset.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/tilesets/tileset.xnb","TextureProcessor","Texture2DContent",981,9301,0.0125559
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/knight_spritesheet.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/knight_spritesheet.xnb","TextureProcessor","Texture2DContent",991,49237,0.2037702
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/test/bob.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/test/bob.xnb","TextureProcessor","Texture2DContent",127,341,0.3384999
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/tileset.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/tilesets/tileset.xnb","TextureProcessor","Texture2DContent",981,9301,0.0172928
