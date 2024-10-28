@@ -1,5 +1,6 @@
 using Key_Quest.Engine.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Key_Quest.Engine.ECS.Components.Physics;

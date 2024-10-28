@@ -11,6 +11,7 @@ public class SpriteRenderer : Component
     private Texture2D _sprite = null;
     
     private bool _flip = false;
+    private float _layerDepth = 0f;
     
     private Spritesheet _spritesheet = null;
     private int _spriteIndex = 0;
@@ -19,6 +20,12 @@ public class SpriteRenderer : Component
     {
         get => _flip;
         set => _flip = value;
+    }
+
+    public float LayerDepth
+    {
+        get => _layerDepth;
+        set => _layerDepth = value;
     }
 
     public SpriteRenderer(Texture2D sprite)
@@ -59,7 +66,7 @@ public class SpriteRenderer : Component
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            0f);
+            _layerDepth);
     }
 
     private void DrawFromSpritesheet()
@@ -73,6 +80,6 @@ public class SpriteRenderer : Component
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            0f);
+            _layerDepth);
     }
 }

@@ -68,9 +68,9 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.White);
+        GraphicsDevice.Clear(new Color(new Vector3(36/255f, 44/255f, 66/255f)));
         
-        Config.Batch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap);
+        Config.Batch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointWrap);
         SceneManager.RenderCurrentScene();
         Config.Batch.End();
         

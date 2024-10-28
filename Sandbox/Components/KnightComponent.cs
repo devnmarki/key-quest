@@ -1,3 +1,4 @@
+using System;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Engine.Input;
@@ -43,11 +44,23 @@ public class KnightComponent : Component
         {
             _input = 0;
         }
+
+        float jumpForce = 500f;
+        if (KeyboardHandler.IsPressed(Keys.Z))
+        {
+            _rb.Velocity = new Vector2(_rb.Velocity.X, -jumpForce);
+            Console.WriteLine("Player jumped!");
+        }
     }
 
     private void Move()
     {
         float moveSpeed = 300f;
         _rb.Velocity = new Vector2(_input * moveSpeed, _rb.Velocity.Y);
+    }
+
+    private void Jump()
+    {
+        
     }
 }

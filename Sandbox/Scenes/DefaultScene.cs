@@ -22,8 +22,8 @@ public class DefaultScene : Scene
     {
         base.Start();
         
-        _map = new TmxMap("../../../Content/levels/test_level.tmx");
-        Texture2D tileset = Config.Content.Load<Texture2D>("sprites/tilesets/tileset");
+        _map = new TmxMap("../../../Content/levels/dungeon_level.tmx");
+        Texture2D tileset = Config.Content.Load<Texture2D>("sprites/tilesets/dungeon_tileset");
         
         _tilemapManager = new TilemapManager(_map, tileset);
         _tilemapManager.CreateColliders(new Vector2(0, 0));
@@ -40,6 +40,6 @@ public class DefaultScene : Scene
     {
         base.Render();
         
-        _tilemapManager.Draw(new Vector2(0, 0));
+        _tilemapManager.Draw(Vector2.Zero, 0.9f);
     }
 }
