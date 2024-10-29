@@ -17,29 +17,24 @@ public class DefaultScene : Scene
 {
     private TmxMap _map;
     private TilemapManager _tilemapManager;
-    
+
     public override void Start()
     {
         base.Start();
         
-        _map = new TmxMap("../../../Content/levels/test_level.tmx");
-        Texture2D tileset = Config.Content.Load<Texture2D>("sprites/tilesets/tileset");
+        _map = new TmxMap("../../../Content/levels/dungeon_level.tmx");
+        Texture2D tileset = Config.Content.Load<Texture2D>("sprites/tilesets/dungeon_tileset");
         
         _tilemapManager = new TilemapManager(_map, tileset);
         _tilemapManager.CreateColliders(new Vector2(0, 0));
         
         AddGameObject(new Knight(new Vector2(200, 50)));
     }
-
-    public override void Update()
-    {
-        base.Update();
-    }
-
+    
     public override void Render()
     {
         base.Render();
         
-        _tilemapManager.Draw(new Vector2(0, 0));
+        _tilemapManager.Draw(Vector2.Zero, 0.9f);
     }
 }

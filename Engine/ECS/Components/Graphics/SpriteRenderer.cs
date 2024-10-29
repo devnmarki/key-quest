@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Key_Quest.Engine.ECS.Components.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
@@ -11,6 +12,7 @@ public class SpriteRenderer : Component
     private Texture2D _sprite = null;
     
     private bool _flip = false;
+    private float _layerDepth = 0f;
     
     private Spritesheet _spritesheet = null;
     private int _spriteIndex = 0;
@@ -21,6 +23,24 @@ public class SpriteRenderer : Component
         set => _flip = value;
     }
 
+    public float LayerDepth
+    {
+        get => _layerDepth;
+        set => _layerDepth = value;
+    }
+
+    public Spritesheet Spritesheet
+    {
+        get => _spritesheet;
+        set => _spritesheet = value;
+    }
+
+    public int SpriteIndex
+    {
+        get => _spriteIndex;
+        set => _spriteIndex = value;
+    }
+    
     public SpriteRenderer(Texture2D sprite)
     {
         _sprite = sprite;
@@ -38,6 +58,8 @@ public class SpriteRenderer : Component
     {
         base.OnDraw();
 
+        if (GameObject.HasComponent<Animator>()) return;
+        
         if (_sprite != null)
         {
             DrawSingleSprite();
@@ -59,7 +81,7 @@ public class SpriteRenderer : Component
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            0f);
+            _layerDepth);
     }
 
     private void DrawFromSpritesheet()
@@ -73,6 +95,20 @@ public class SpriteRenderer : Component
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            0f);
+            _layerDepth);
+    }
+    
+    public void DrawAnimation(Spritesheet spritesheet, Rectangle sprite)
+    {
+        Config.Batch.Draw(
+            spritesheet.Texture,
+            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY),
+            sprite,
+            Color.White,
+            0f,
+            Vector2.Zero,
+            GameObject.Transform.Scale,
+            _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+            _layerDepth);
     }
 }

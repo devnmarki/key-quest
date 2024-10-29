@@ -27,7 +27,7 @@ public class TilemapManager
         tilesetTilesWide = tileset.Width / tileWidth;
     }
 
-    public void Draw(Vector2 startPosition)
+    public void Draw(Vector2 startPosition, float layerDepth = 0f)
     {
         foreach (var layer in map.Layers)
         {
@@ -41,16 +41,20 @@ public class TilemapManager
                     int column = tileFrame % tilesetTilesWide;
                     int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
 
-                    float x = startPosition.X + (i % map.Width) * tileWidth * Config.GameScale; // Adjusted for scaling and starting position
-                    float y = startPosition.Y + (float)Math.Floor(i / (double)map.Width) * tileHeight * Config.GameScale; // Adjusted for scaling and starting position
+                    float x = startPosition.X + (i % map.Width) * tileWidth * Config.GameScale;
+                    float y = startPosition.Y + (float)Math.Floor(i / (double)map.Width) * tileHeight * Config.GameScale;
 
-                    Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
+                    Rectangle tilesetRect = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
 
-                    // Adjusted position and size with scaling
                     Config.Batch.Draw(tileset, 
                         new Rectangle((int)x - (int)Config.CameraX, (int)y - (int)Config.CameraY, (int)(tileWidth * Config.GameScale), (int)(tileHeight * Config.GameScale)), 
-                        tilesetRec, 
-                        Color.White);
+                        tilesetRect, 
+                        Color.White,
+                        0f,
+                        Vector2.Zero, 
+                        SpriteEffects.None,
+                        layerDepth
+                        );
                 }
             }
         }
@@ -58,15 +62,12 @@ public class TilemapManager
     
     public void CreateColliders(Vector2 startPosition)
     {
-        // Assuming "Collision" is the name of the collision layer in your Tiled map
-
         foreach (var obj in map.ObjectGroups["Collision"].Objects)
         {
-            // The object's position and size in pixels
-            double x = startPosition.X + obj.X * Config.GameScale; // Adjusted for scaling
-            double y = startPosition.Y + obj.Y * Config.GameScale; // Adjusted for scaling
-            double width = obj.Width * Config.GameScale; // Adjusted for scaling
-            double height = obj.Height * Config.GameScale; // Adjusted for scaling
+            double x = startPosition.X + obj.X * Config.GameScale;
+            double y = startPosition.Y + obj.Y * Config.GameScale;
+            double width = obj.Width * Config.GameScale;
+            double height = obj.Height * Config.GameScale;
 
             GameObject collider = new GameObject();
             collider.Transform.Position.X = (float)x;

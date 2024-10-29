@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Key_Quest.Engine.SceneSystem;
 using Key_Quest.Engine.Utils;
 using Microsoft.Xna.Framework;
@@ -11,10 +12,23 @@ public class Rigidbody : Component
     public float Mass { get; set; } = 1f;
     public bool UseGravity { get; set; } = true;
 
+    public Dictionary<string, Action> CollisionActions { get; set; }
+
     public Rigidbody(float mass = 1f, bool useGravity = true)
     {
         Mass = mass;
         UseGravity = useGravity;
+
+        CollisionActions = new Dictionary<string, Action>()
+        {
+            { "enter", () => {} },
+            { "horizontal", () => {} },
+            { "vertical", () => {} },
+            { "top", () => {} },
+            { "bottom", () => {} },
+            { "left", () => {} },
+            { "right", () => {} },
+        };
     }
 
     public void ApplyForce(Vector2 force)
@@ -55,6 +69,7 @@ public class Rigidbody : Component
                         if (collider.CheckCollision(otherCollider))
                         {
                             HandleCollision(collider, otherCollider, axis);
+                            CollisionActions["enter"]();
                         }
                     }
                 }
@@ -68,27 +83,34 @@ public class Rigidbody : Component
         {
             if (current.GetBounds().Right >= other.GetBounds().Left && current.GetBounds().Left <= other.GetBounds().Left)
             {
-                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - current.Size.X;
+                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - current.Size.X - current.Offset.X + other.Offset.X;
+                CollisionActions["right"]();
             }
 
             if (current.GetBounds().Left <= other.GetBounds().Right && current.GetBounds().Right >= other.GetBounds().Right)
             {
-                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X;
+                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X - current.Offset.X + other.Offset.X;
+                CollisionActions["left"]();
             }
+
+            CollisionActions["horizontal"]();
         }
         else
         {
-            if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top)
+            if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top - 0.1f)
             {
-                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y;
-                Velocity.Y = 0f;
+                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y - current.Offset.Y + other.Offset.Y - 0.1f;
+                CollisionActions["bottom"]();
             }
 
             if (current.GetBounds().Top <= other.GetBounds().Bottom && current.GetBounds().Bottom >= other.GetBounds().Bottom)
             {
-                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y;
-                Velocity.Y = 0f;
+                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y - current.Offset.Y + other.Offset.Y;
+                CollisionActions["top"]();
             }
+            
+            Velocity.Y = 0f;
+            CollisionActions["vertical"]();
         }
     }
 }

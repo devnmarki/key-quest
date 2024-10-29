@@ -13,7 +13,7 @@ public class Config
     public static int WindowWidth { get; set; } = 768;
     public static int WindowHeight { get; set; } = 768;
     public static GameTime Time { get; set; }
-    public static float GameScale { get; set; } = 4f;
+    public static float GameScale { get; set; } = 3f;
 
     public static Vector2 GravityScale { get; set; } = new Vector2(0f, 30f);
 

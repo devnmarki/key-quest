@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/knight_spritesheet.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/knight_spritesheet.xnb","TextureProcessor","Texture2DContent",991,49237,0.1430914
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/knight_spritesheet.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/knight_spritesheet.xnb","TextureProcessor","Texture2DContent",991,49237,0.3165782
 "D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/test/bob.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/test/bob.xnb","TextureProcessor","Texture2DContent",127,341,0.4217496
-"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/tileset.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/tilesets/tileset.xnb","TextureProcessor","Texture2DContent",981,9301,0.3502008
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/dungeon_tileset.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/tilesets/dungeon_tileset.xnb","TextureProcessor","Texture2DContent",943,30805,0.1442827
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/tileset.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/tilesets/tileset.xnb","TextureProcessor","Texture2DContent",981,9301,0.0063224

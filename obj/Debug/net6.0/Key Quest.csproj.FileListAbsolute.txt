@@ -28,3 +28,4 @@ D:\Dev\Game Dev\C# - MonoGame\Key Quest\obj\Debug\net6.0\Key Quest.sourcelink.js
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\TiledSharp.dll
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\tilesets\tileset.xnb
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\knight_spritesheet.xnb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\tilesets\dungeon_tileset.xnb
