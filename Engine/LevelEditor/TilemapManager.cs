@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Key_Quest.Engine.ECS;
 using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Engine.SceneSystem;
@@ -18,6 +19,8 @@ public class TilemapManager
     int tilesetTilesWide;
     int tilesetTilesHigh;
 
+    public static Dictionary<string, Func<GameObject>> GameObjects { get; set; } = new Dictionary<string, Func<GameObject>>();
+    
     public TilemapManager(TmxMap map, Texture2D tileset)
     {
         this.map = map;
@@ -74,6 +77,28 @@ public class TilemapManager
             collider.Transform.Position.Y = (float)y;
             collider.AddComponent(new BoxCollider(new Vector2((float)width, (float)height)));
             SceneManager.CurrentScene.AddGameObject(collider);
+        }
+    }
+
+    public static void AddGameObjectToLoad(string name, Func<GameObject> gameObject)
+    {
+        GameObjects.Add(name, gameObject);
+    }
+    
+    public void LoadGameObjects()
+    {
+        if (map.ObjectGroups.TryGetValue("Game Objects", out var gameObjectsLayer))
+        {
+            foreach (var obj in gameObjectsLayer.Objects)
+            {
+                if (GameObjects.TryGetValue(obj.Name, out var factory))
+                {
+                    GameObject go = factory();
+                    go.Transform.Position = new Vector2((float)obj.X * Config.GameScale, (float)obj.Y * Config.GameScale);
+                    
+                    SceneManager.CurrentScene.AddGameObject(go);
+                }
+            }
         }
     }
 }

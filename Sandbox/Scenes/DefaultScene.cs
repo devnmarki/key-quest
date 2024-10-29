@@ -28,7 +28,9 @@ public class DefaultScene : Scene
         _tilemapManager = new TilemapManager(_map, tileset);
         _tilemapManager.CreateColliders(new Vector2(0, 0));
         
-        AddGameObject(new Knight(new Vector2(200, 50)));
+        TilemapManager.AddGameObjectToLoad("Knight", () => new Knight());
+        
+        _tilemapManager.LoadGameObjects();
     }
     
     public override void Render()
