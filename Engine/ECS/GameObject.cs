@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Physics;
 
@@ -81,6 +82,11 @@ public class GameObject
         }
 
         return null;
+    }
+
+    public bool HasComponent<T>() where T : Component
+    {
+        return _components.OfType<Rigidbody>().Any();
     }
 
     public List<BoxCollider> GetColliders()

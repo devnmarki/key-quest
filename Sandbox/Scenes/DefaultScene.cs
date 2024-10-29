@@ -17,7 +17,7 @@ public class DefaultScene : Scene
 {
     private TmxMap _map;
     private TilemapManager _tilemapManager;
-    
+
     public override void Start()
     {
         base.Start();
@@ -30,12 +30,7 @@ public class DefaultScene : Scene
         
         AddGameObject(new Knight(new Vector2(200, 50)));
     }
-
-    public override void Update()
-    {
-        base.Update();
-    }
-
+    
     public override void Render()
     {
         base.Render();

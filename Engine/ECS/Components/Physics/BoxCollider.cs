@@ -54,7 +54,7 @@ public class BoxCollider : Component
         if (debugMode)
         {
             Rectangle colliderRect = new Rectangle(GetBounds().Left - (int)Config.CameraX, GetBounds().Top - (int)Config.CameraY, (int)Size.X, (int)Size.Y);
-            Config.Batch.Draw(Config.PixelTexture, colliderRect, Color.Blue * 0.5f);
+            Config.Batch.Draw(Config.PixelTexture, colliderRect, Color.Red * 0.5f);
         }
     }
 }

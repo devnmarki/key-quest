@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Key_Quest.Engine.ECS.Components.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
@@ -28,6 +29,18 @@ public class SpriteRenderer : Component
         set => _layerDepth = value;
     }
 
+    public Spritesheet Spritesheet
+    {
+        get => _spritesheet;
+        set => _spritesheet = value;
+    }
+
+    public int SpriteIndex
+    {
+        get => _spriteIndex;
+        set => _spriteIndex = value;
+    }
+    
     public SpriteRenderer(Texture2D sprite)
     {
         _sprite = sprite;
@@ -45,6 +58,8 @@ public class SpriteRenderer : Component
     {
         base.OnDraw();
 
+        if (GameObject.HasComponent<Animator>()) return;
+        
         if (_sprite != null)
         {
             DrawSingleSprite();
@@ -75,6 +90,20 @@ public class SpriteRenderer : Component
             _spritesheet.Texture,
             GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY),
             _spritesheet.Sprites[_spriteIndex],
+            Color.White,
+            0f,
+            Vector2.Zero,
+            GameObject.Transform.Scale,
+            _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+            _layerDepth);
+    }
+    
+    public void DrawAnimation(Spritesheet spritesheet, Rectangle sprite)
+    {
+        Config.Batch.Draw(
+            spritesheet.Texture,
+            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY),
+            sprite,
             Color.White,
             0f,
             Vector2.Zero,
