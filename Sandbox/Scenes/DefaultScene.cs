@@ -28,7 +28,7 @@ public class DefaultScene : Scene
         _tilemapManager = new TilemapManager(_map, tileset);
         _tilemapManager.CreateColliders(new Vector2(0, 0));
         
-        TilemapManager.AddGameObjectToLoad("Knight", () => new Knight());
+        
         
         _tilemapManager.LoadGameObjects();
     }

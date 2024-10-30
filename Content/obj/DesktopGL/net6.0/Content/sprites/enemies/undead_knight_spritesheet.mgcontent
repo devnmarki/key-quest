@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/dungeon_tileset.png</SourceFile>
-  <SourceTime>2024-10-29T14:05:36.2486536+01:00</SourceTime>
-  <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/tilesets/dungeon_tileset.xnb</DestFile>
-  <DestTime>2024-10-29T17:21:16.4630307+01:00</DestTime>
+  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/enemies/undead_knight_spritesheet.png</SourceFile>
+  <SourceTime>2024-10-29T17:19:35.5503599+01:00</SourceTime>
+  <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/enemies/undead_knight_spritesheet.xnb</DestFile>
+  <DestTime>2024-10-29T17:24:05.6620402+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

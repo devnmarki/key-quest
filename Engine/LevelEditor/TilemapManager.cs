@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Key_Quest.Engine.ECS;
+using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Engine.SceneSystem;
 using Microsoft.Xna.Framework;
@@ -94,6 +95,8 @@ public class TilemapManager
                 if (GameObjects.TryGetValue(obj.Name, out var factory))
                 {
                     GameObject go = factory();
+
+                    go.MapObject = obj;
                     go.Transform.Position = new Vector2((float)obj.X * Config.GameScale, (float)obj.Y * Config.GameScale);
                     
                     SceneManager.CurrentScene.AddGameObject(go);

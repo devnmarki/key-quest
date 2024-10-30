@@ -1,7 +1,10 @@
 ﻿using System;
 using Key_Quest.Engine;
 using Key_Quest.Engine.Input;
+using Key_Quest.Engine.LevelEditor;
 using Key_Quest.Engine.SceneSystem;
+using Key_Quest.Sandbox.GameObjects;
+using Key_Quest.Sandbox.GameObjects.Enemies;
 using Key_Quest.Sandbox.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -39,6 +42,10 @@ public class Game1 : Game
         
         SceneManager.AddScene("default", new DefaultScene());
         SceneManager.AddScene("main_menu", new MainMenuScene());
+        
+        TilemapManager.AddGameObjectToLoad("Knight", () => new Knight());
+        TilemapManager.AddGameObjectToLoad("Undead Knight", () => new UndeadKnight());
+        
         SceneManager.ChangeScene("default");
     }
 
@@ -60,6 +67,9 @@ public class Game1 : Game
         {
             SceneManager.ChangeScene("main_menu");
         }
+        
+        if (KeyboardHandler.IsPressed(Keys.Tab))
+            Config.DebugMode = !Config.DebugMode;
         
         SceneManager.UpdateCurrentScene();
 
