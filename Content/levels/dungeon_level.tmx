@@ -35,7 +35,7 @@
   <object id="18" name="Knight" x="32" y="192">
    <point/>
   </object>
-  <object id="22" name="Undead Knight" x="112" y="224" width="80" height="3.04545">
+  <object id="22" name="Undead Knight" x="112" y="224" width="96" height="3.04545">
    <properties>
     <property name="Enemy" value="Undead Knight"/>
    </properties>
