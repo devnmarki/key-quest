@@ -13,6 +13,9 @@ public class Rigidbody : Component
     public bool UseGravity { get; set; } = true;
 
     public Dictionary<string, Action> CollisionActions { get; set; }
+    public Action<GameObject> OnCollision { get; set; }
+
+    public List<Type> CollisionIgnoreList { get; set; } = new List<Type>();
 
     public Rigidbody(float mass = 1f, bool useGravity = true)
     {
@@ -21,7 +24,6 @@ public class Rigidbody : Component
 
         CollisionActions = new Dictionary<string, Action>()
         {
-            { "enter", () => {} },
             { "horizontal", () => {} },
             { "vertical", () => {} },
             { "top", () => {} },
@@ -69,7 +71,8 @@ public class Rigidbody : Component
                         if (collider.CheckCollision(otherCollider))
                         {
                             HandleCollision(collider, otherCollider, axis);
-                            CollisionActions["enter"]();
+
+                            OnCollision?.Invoke(otherCollider.GameObject);
                         }
                     }
                 }
@@ -79,38 +82,50 @@ public class Rigidbody : Component
     
     private void HandleCollision(BoxCollider current, BoxCollider other, Axis axis)
     {
+        // Check if the type of the other GameObject is in the ignore list
+        bool isIgnoredType = CollisionIgnoreList.Contains(other.GameObject.GetType());
+    
+        // Call collision actions but skip position adjustment if type is ignored
         if (axis == Axis.Horizontal)
         {
-            if (current.GetBounds().Right >= other.GetBounds().Left && current.GetBounds().Left <= other.GetBounds().Left)
+            if (!isIgnoredType)
             {
-                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - current.Size.X - current.Offset.X + other.Offset.X;
-                CollisionActions["right"]();
-            }
+                if (current.GetBounds().Right >= other.GetBounds().Left && current.GetBounds().Left <= other.GetBounds().Left)
+                {
+                    GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - current.Size.X - current.Offset.X + other.Offset.X;
+                    CollisionActions["right"]();
+                }
 
-            if (current.GetBounds().Left <= other.GetBounds().Right && current.GetBounds().Right >= other.GetBounds().Right)
-            {
-                GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X - current.Offset.X + other.Offset.X;
-                CollisionActions["left"]();
+                if (current.GetBounds().Left <= other.GetBounds().Right && current.GetBounds().Right >= other.GetBounds().Right)
+                {
+                    GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X - current.Offset.X + other.Offset.X;
+                    CollisionActions["left"]();
+                }
             }
-
+        
             CollisionActions["horizontal"]();
         }
         else
         {
-            if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top - 0.1f)
+            if (!isIgnoredType)
             {
-                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y - current.Offset.Y + other.Offset.Y - 0.1f;
-                CollisionActions["bottom"]();
-            }
+                if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top - 0.1f)
+                {
+                    GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y - current.Offset.Y + other.Offset.Y - 0.1f;
+                    CollisionActions["bottom"]();
+                }
 
-            if (current.GetBounds().Top <= other.GetBounds().Bottom && current.GetBounds().Bottom >= other.GetBounds().Bottom)
-            {
-                GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y - current.Offset.Y + other.Offset.Y;
-                CollisionActions["top"]();
+                if (current.GetBounds().Top <= other.GetBounds().Bottom && current.GetBounds().Bottom >= other.GetBounds().Bottom)
+                {
+                    GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y - current.Offset.Y + other.Offset.Y;
+                    CollisionActions["top"]();
+                }
+
+                Velocity.Y = 0f;
             }
-            
-            Velocity.Y = 0f;
+        
             CollisionActions["vertical"]();
         }
     }
+
 }

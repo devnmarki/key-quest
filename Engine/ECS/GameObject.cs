@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Physics;
+using Key_Quest.Engine.SceneSystem;
 using Microsoft.Xna.Framework;
 using TiledSharp;
 
@@ -95,9 +97,62 @@ public class GameObject
         return _components.OfType<T>().Any();
     }
 
-    public List<BoxCollider> GetColliders()
+    public GameObject FindGameObjectByTag(string tag)
     {
-        return _colliders;
+        GameObject target = null;
+        foreach (GameObject gameObject in SceneManager.CurrentScene.GameObjects)
+        {
+            if (gameObject.Tag == tag)
+            {
+                target = gameObject;
+            }
+        }
+
+        if (target == null)
+            Console.WriteLine("Couldn't find game object with tag " + tag);
+        
+        return target;
+    }
+
+    public List<GameObject> FindGameObjectsByTag(string tag)
+    {
+        List<GameObject> targets = new List<GameObject>();
+        foreach (GameObject gameObject in SceneManager.CurrentScene.GameObjects)
+        {
+            if (gameObject.Tag == tag)
+                targets.Add(gameObject);
+        }
+
+        return targets;
+    }
+
+    public GameObject FindGameObjectByName(string name)
+    {
+        GameObject target = null;
+        foreach (GameObject gameObject in SceneManager.CurrentScene.GameObjects)
+        {
+            if (gameObject.Name == name)
+            {
+                target = gameObject;
+            }
+        }
+        
+        if (target == null)
+            Console.WriteLine("Couldn't find game object with name " + name);
+
+        return target;
+    }
+    
+    public List<GameObject> FindGameObjectsByName(string name)
+    {
+        List<GameObject> targets = new List<GameObject>();
+        foreach (GameObject gameObject in SceneManager.CurrentScene.GameObjects)
+        {
+            if (gameObject.Name == name)
+                targets.Add(gameObject);
+        }
+
+        return targets;
     }
     
     public static Vector2 MoveTowards(Vector2 current, Vector2 target, float maxDistanceDelta)
@@ -105,13 +160,16 @@ public class GameObject
         Vector2 direction = target - current;
         float distance = direction.Length();
 
-        // If the distance is already smaller than the max delta, return the target
         if (distance <= maxDistanceDelta || distance == 0f)
         {
             return target;
         }
 
-        // Move towards the target by the max delta
         return current + direction / distance * maxDistanceDelta;
+    }
+    
+    public List<BoxCollider> GetColliders()
+    {
+        return _colliders;
     }
 }

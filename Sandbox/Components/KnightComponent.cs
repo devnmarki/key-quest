@@ -1,8 +1,12 @@
 using System;
+using Key_Quest.Engine.ECS;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Graphics;
 using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Engine.Input;
+using Key_Quest.Engine.SceneSystem;
+using Key_Quest.Sandbox.Components.Enemies;
+using Key_Quest.Sandbox.GameObjects.Enemies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -24,6 +28,8 @@ public class KnightComponent : Component
         _rb = GameObject.GetComponent<Rigidbody>();
         _sr = GameObject.GetComponent<SpriteRenderer>();
         _anim = GameObject.GetComponent<Animator>();
+
+        HandleCollisionIgnoreList();
     }
 
     public override void OnUpdate()
@@ -86,5 +92,15 @@ public class KnightComponent : Component
         
         if (!_isGrounded) 
             _anim.PlayAnimation("jump");
+    }
+
+    private void HandleCollisionIgnoreList()
+    {
+        foreach (GameObject go in SceneManager.CurrentScene.GameObjects)
+        {
+            if (go.HasComponent<EnemyComponent>())
+                if (!_rb.CollisionIgnoreList.Contains(go.GetType()))
+                    _rb.CollisionIgnoreList.Add(go.GetType());
+        }
     }
 }

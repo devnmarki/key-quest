@@ -1,27 +1,34 @@
 using System;
 using System.Collections.Generic;
 using Key_Quest.Engine;
+using Key_Quest.Engine.ECS;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Graphics;
 using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Sandbox.Enums;
+using Key_Quest.Sandbox.GameObjects;
 using Microsoft.Xna.Framework;
 
 namespace Key_Quest.Sandbox.Components.Enemies;
 
 public class UndeadKnightComponent : Component
 {
+    // Components
     private EnemyComponent _enemyController;
     private Rigidbody _rb;
     private SpriteRenderer _sr;
     private Animator _anim;
 
+    // Patrolling AI
     private float _speed = 100f;
     private int _currentMovePointIndex = 0;
     private float _idleTime = 2f;
     private float _idleTimer;
     private List<Vector2> _movePoints = new List<Vector2>();
     private bool _flip = false;
+    
+    // Attacking AI
+    public GameObject Shield { get; set; }
     
     public override void OnStart()
     {
@@ -42,6 +49,8 @@ public class UndeadKnightComponent : Component
         _movePoints.Add(new Vector2(GameObject.Transform.Position.X + (float)GameObject.MapObject.Width * Config.GameScale, GameObject.Transform.Position.Y));
 
         GameObject.Transform.Position = _movePoints[0];
+
+        _rb.CollisionIgnoreList.Add(typeof(Knight));
     }
 
     public override void OnUpdate()
@@ -77,7 +86,7 @@ public class UndeadKnightComponent : Component
     
     private void Patrol()
     {
-        GameObject.Transform.Position = Engine.ECS.GameObject.MoveTowards(GameObject.Transform.Position, _movePoints[_currentMovePointIndex], _speed * (float)Config.Time.ElapsedGameTime.TotalSeconds);
+        GameObject.Transform.Position = GameObject.MoveTowards(GameObject.Transform.Position, _movePoints[_currentMovePointIndex], _speed * (float)Config.Time.ElapsedGameTime.TotalSeconds);
 
         if (GameObject.Transform.Position == _movePoints[_currentMovePointIndex])
         {
@@ -88,6 +97,6 @@ public class UndeadKnightComponent : Component
 
     private void Attack()
     {
-        
+        // Attack logic
     }
 }
