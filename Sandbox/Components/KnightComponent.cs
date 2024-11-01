@@ -8,12 +8,13 @@ using Key_Quest.Engine.SceneSystem;
 using Key_Quest.Sandbox.Components.Enemies;
 using Key_Quest.Sandbox.GameObjects.Enemies;
 using Key_Quest.Sandbox.GameObjects.Items.Weapons;
+using Key_Quest.Sandbox.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Key_Quest.Sandbox.Components;
 
-public class KnightComponent : Component
+public class KnightComponent : Component, IDamageable
 {
     private Rigidbody _rb;
     private SpriteRenderer _sr;
@@ -21,6 +22,8 @@ public class KnightComponent : Component
     
     private float _input;
     private bool _isGrounded = false;
+
+    public int Health { get; set; } = 1;
 
     public override void OnStart()
     {
@@ -99,9 +102,17 @@ public class KnightComponent : Component
     {
         foreach (GameObject go in SceneManager.CurrentScene.GameObjects)
         {
-            if (go.HasComponent<EnemyComponent>())
-                if (!_rb.CollisionIgnoreList.Contains(go.GetType()))
-                    _rb.CollisionIgnoreList.Add(go.GetType());
+            if (!go.HasComponent<EnemyComponent>()) continue;
+            
+            if (!_rb.CollisionIgnoreList.Contains(go.GetType()))
+                _rb.CollisionIgnoreList.Add(go.GetType());
         }
+    }
+
+    public void TakeDamage(int value)
+    {
+        Health--;
+        if (Health <= 0)
+            Console.WriteLine("Player is dead");
     }
 }

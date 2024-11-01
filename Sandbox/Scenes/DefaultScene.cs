@@ -28,8 +28,6 @@ public class DefaultScene : Scene
         _tilemapManager = new TilemapManager(_map, tileset);
         _tilemapManager.CreateColliders(new Vector2(0, 0));
         
-        
-        
         _tilemapManager.LoadGameObjects();
     }
     

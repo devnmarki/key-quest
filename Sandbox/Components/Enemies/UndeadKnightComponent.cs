@@ -46,7 +46,6 @@ public class UndeadKnightComponent : Component
         
         _enemyController.StateActions[EnemyStates.Idle] = Idle;
         _enemyController.StateActions[EnemyStates.Patrol] = Patrol;
-        _enemyController.StateActions[EnemyStates.Attack] = Attack;
         
         _movePoints.Add(GameObject.Transform.Position);
         _movePoints.Add(new Vector2(GameObject.Transform.Position.X + (float)GameObject.MapObject.Width * Config.GameScale, GameObject.Transform.Position.Y));
@@ -102,38 +101,40 @@ public class UndeadKnightComponent : Component
         }
     }
 
-    private void Attack()
-    {
-        // Attack logic
-    }
-
     private void HandleShield()
     {
-        // foreach (var frame in _anim.CurrentAnimation.Frames)
-        // {
-        //     if (frame % 2 == 0)
-        //     else
-        // }
         if (_anim.CurrentAnimation == _anim.GetAnimation("walk"))
         {
-            if (_anim.CurrentAnimation.CurrentFrame % 2 == 0)
-                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (1f * Config.GameScale);
-            else
-                Shield.Transform.Position.Y = GameObject.Transform.Position.Y;
+            switch (_anim.CurrentAnimation.CurrentFrame)
+            {
+                case 0 or 2:
+                    Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (1f * Config.GameScale);
+                    break;
+                case 1 or 3:
+                    Shield.Transform.Position.Y = GameObject.Transform.Position.Y;
+                    break;
+                default:
+                    break;
+            }
         } 
         else
         {
-            if (_anim.CurrentAnimation.CurrentFrame is 0 or 4)   
-                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (2f * Config.GameScale);
-            else if (_anim.CurrentAnimation.CurrentFrame == 1)
-                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (2f * Config.GameScale);
-            else if (_anim.CurrentAnimation.CurrentFrame == 2)
-                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (3f * Config.GameScale);
+            switch (_anim.CurrentAnimation.CurrentFrame)
+            {
+                case 0 or 1 or 4:
+                    Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (2f * Config.GameScale);
+                    break;
+                case 2:
+                    Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (3f * Config.GameScale);
+                    break;
+                default:
+                    break;
+            }
         }
-        
-        if (_direction == Directions.Right)
-            Shield.Transform.Position.X = GameObject.Transform.Position.X - (5f * Config.GameScale);
-        else
-            Shield.Transform.Position.X = GameObject.Transform.Position.X + (Config.GameScale);
+
+        Shield.Transform.Position.X = _direction == Directions.Right
+            ? GameObject.Transform.Position.X - (5f * Config.GameScale)
+            : GameObject.Transform.Position.X + (Config.GameScale);
+
     }
 }

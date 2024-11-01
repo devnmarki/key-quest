@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/items/weapons/shield.png</SourceFile>
-  <SourceTime>2024-10-29T16:54:16.3666478+01:00</SourceTime>
+  <SourceTime>2024-11-01T14:34:10.4250527+01:00</SourceTime>
   <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/items/weapons/shield.xnb</DestFile>
-  <DestTime>2024-11-01T13:48:20.8020217+01:00</DestTime>
+  <DestTime>2024-11-01T15:55:06.1399284+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
