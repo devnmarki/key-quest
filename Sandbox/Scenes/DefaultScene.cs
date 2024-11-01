@@ -37,6 +37,6 @@ public class DefaultScene : Scene
     {
         base.Render();
         
-        _tilemapManager.Draw(Vector2.Zero, 0.9f);
+        _tilemapManager.Draw(Vector2.Zero, 0.75f);
     }
 }

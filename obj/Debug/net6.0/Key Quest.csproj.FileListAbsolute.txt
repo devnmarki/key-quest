@@ -30,3 +30,4 @@ D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\tileset
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\knight_spritesheet.xnb
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\tilesets\dungeon_tileset.xnb
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\enemies\undead_knight_spritesheet.xnb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\items\weapons\shield.xnb

@@ -84,7 +84,7 @@ public class SpriteRenderer : Component
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            _layerDepth);
+            _layerDepth / 1000f);
     }
 
     private void DrawFromSpritesheet()
@@ -98,7 +98,7 @@ public class SpriteRenderer : Component
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            _layerDepth);
+            _layerDepth / 1000f);
     }
     
     public void DrawAnimation(Spritesheet spritesheet, Rectangle sprite)
@@ -112,6 +112,6 @@ public class SpriteRenderer : Component
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            _layerDepth);
+            _layerDepth / 1000f);
     }
 }

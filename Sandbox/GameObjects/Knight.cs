@@ -21,7 +21,7 @@ public class Knight : GameObject
 
         Transform.Scale = new Vector2(Config.GameScale);
         
-        AddComponent(new SpriteRenderer(Assets.Spritesheets.Knight, 0) { LayerDepth = 0.1f });
+        AddComponent(new SpriteRenderer(Assets.Spritesheets.Knight, 0) { LayerDepth = 200 });
         AddComponent(new BoxCollider(new Vector2(12 * Config.GameScale, 16 * Config.GameScale), new Vector2(10 * Config.GameScale, 9 * Config.GameScale)));
         AddComponent(new Rigidbody());
         AddComponent(new KnightComponent());

@@ -7,6 +7,7 @@ using Key_Quest.Engine.Input;
 using Key_Quest.Engine.SceneSystem;
 using Key_Quest.Sandbox.Components.Enemies;
 using Key_Quest.Sandbox.GameObjects.Enemies;
+using Key_Quest.Sandbox.GameObjects.Items.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 

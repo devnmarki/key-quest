@@ -5,8 +5,10 @@ using Key_Quest.Engine.ECS;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Graphics;
 using Key_Quest.Engine.ECS.Components.Physics;
+using Key_Quest.Engine.SceneSystem;
 using Key_Quest.Sandbox.Enums;
 using Key_Quest.Sandbox.GameObjects;
+using Key_Quest.Sandbox.GameObjects.Items.Weapons;
 using Microsoft.Xna.Framework;
 
 namespace Key_Quest.Sandbox.Components.Enemies;
@@ -26,6 +28,7 @@ public class UndeadKnightComponent : Component
     private float _idleTimer;
     private List<Vector2> _movePoints = new List<Vector2>();
     private bool _flip = false;
+    private Directions _direction = Directions.Right;
     
     // Attacking AI
     public GameObject Shield { get; set; }
@@ -58,11 +61,15 @@ public class UndeadKnightComponent : Component
         base.OnUpdate();
 
         _sr.Flip = _flip;
-        
-        if (GameObject.Transform.Position == _movePoints[_currentMovePointIndex])
-            _anim.PlayAnimation("idle");
-        else
-            _anim.PlayAnimation("walk");
+
+        _anim.PlayAnimation(GameObject.Transform.Position == _movePoints[_currentMovePointIndex] ? "idle" : "walk");
+
+        if (GameObject.Transform.Position == _movePoints[0])
+            _direction = Directions.Right;
+        else if (GameObject.Transform.Position == _movePoints[1])
+            _direction = Directions.Left;
+
+        HandleShield();
     }
 
     private void Idle()
@@ -90,7 +97,7 @@ public class UndeadKnightComponent : Component
 
         if (GameObject.Transform.Position == _movePoints[_currentMovePointIndex])
         {
-            _flip = !_flip;
+            _flip = _direction != Directions.Left;
             _enemyController.State = EnemyStates.Idle;
         }
     }
@@ -98,5 +105,35 @@ public class UndeadKnightComponent : Component
     private void Attack()
     {
         // Attack logic
+    }
+
+    private void HandleShield()
+    {
+        // foreach (var frame in _anim.CurrentAnimation.Frames)
+        // {
+        //     if (frame % 2 == 0)
+        //     else
+        // }
+        if (_anim.CurrentAnimation == _anim.GetAnimation("walk"))
+        {
+            if (_anim.CurrentAnimation.CurrentFrame % 2 == 0)
+                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (1f * Config.GameScale);
+            else
+                Shield.Transform.Position.Y = GameObject.Transform.Position.Y;
+        } 
+        else
+        {
+            if (_anim.CurrentAnimation.CurrentFrame is 0 or 4)   
+                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (2f * Config.GameScale);
+            else if (_anim.CurrentAnimation.CurrentFrame == 1)
+                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (2f * Config.GameScale);
+            else if (_anim.CurrentAnimation.CurrentFrame == 2)
+                Shield.Transform.Position.Y = GameObject.Transform.Position.Y + (3f * Config.GameScale);
+        }
+        
+        if (_direction == Directions.Right)
+            Shield.Transform.Position.X = GameObject.Transform.Position.X - (5f * Config.GameScale);
+        else
+            Shield.Transform.Position.X = GameObject.Transform.Position.X + (Config.GameScale);
     }
 }
