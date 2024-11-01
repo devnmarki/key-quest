@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using Key_Quest.Engine.ECS.Components.Graphics;
+using Key_Quest.Sandbox.GameObjects.Enemies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
@@ -41,6 +42,8 @@ public class SpriteRenderer : Component
         set => _spriteIndex = value;
     }
     
+    public Vector2 SpriteOffset { get; set; } = Vector2.Zero;
+    
     public SpriteRenderer(Texture2D sprite)
     {
         _sprite = sprite;
@@ -74,41 +77,41 @@ public class SpriteRenderer : Component
     {
         Config.Batch.Draw(
             _sprite,
-            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY),
+            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY) - SpriteOffset,
             null,
             Color.White,
             0f,
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            _layerDepth);
+            _layerDepth / 1000f);
     }
 
     private void DrawFromSpritesheet()
     {
         Config.Batch.Draw(
             _spritesheet.Texture,
-            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY),
+            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY) - SpriteOffset,
             _spritesheet.Sprites[_spriteIndex],
             Color.White,
             0f,
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            _layerDepth);
+            _layerDepth / 1000f);
     }
     
     public void DrawAnimation(Spritesheet spritesheet, Rectangle sprite)
     {
         Config.Batch.Draw(
             spritesheet.Texture,
-            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY),
+            GameObject.Transform.Position - new Vector2(Config.CameraX, Config.CameraY) - SpriteOffset,
             sprite,
             Color.White,
             0f,
             Vector2.Zero,
             GameObject.Transform.Scale,
             _flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-            _layerDepth);
+            _layerDepth / 1000f);
     }
 }

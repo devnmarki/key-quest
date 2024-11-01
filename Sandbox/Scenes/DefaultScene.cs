@@ -28,13 +28,15 @@ public class DefaultScene : Scene
         _tilemapManager = new TilemapManager(_map, tileset);
         _tilemapManager.CreateColliders(new Vector2(0, 0));
         
-        AddGameObject(new Knight(new Vector2(200, 50)));
+        
+        
+        _tilemapManager.LoadGameObjects();
     }
     
     public override void Render()
     {
         base.Render();
         
-        _tilemapManager.Draw(Vector2.Zero, 0.9f);
+        _tilemapManager.Draw(Vector2.Zero, 0.75f);
     }
 }

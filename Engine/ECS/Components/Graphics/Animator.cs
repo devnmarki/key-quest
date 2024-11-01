@@ -49,4 +49,9 @@ public class Animator : Component
             sr.DrawAnimation(CurrentAnimation.Spritesheet, CurrentAnimation.Spritesheet.Sprites[CurrentAnimation.Frames[CurrentAnimation.CurrentFrame]]);
         }
     }
+    
+    public Animation GetAnimation(string animationName)
+    {
+        return Animations[animationName];
+    }
 }

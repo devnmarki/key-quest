@@ -10,8 +10,6 @@ public class BoxCollider : Component
     public Vector2 Size { get; set; }
     public Vector2 Offset { get; set; }
     
-    private bool debugMode = false;
-
     public BoxCollider(Vector2 size)
     {
         Size = size;
@@ -39,19 +37,11 @@ public class BoxCollider : Component
         return GetBounds().Intersects(other.GetBounds());
     }
 
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-
-        if (KeyboardHandler.IsPressed(Keys.Tab))
-            debugMode = !debugMode;
-    }
-
     public override void OnDraw()
     {
         base.OnDraw();
 
-        if (debugMode)
+        if (Config.DebugMode)
         {
             Rectangle colliderRect = new Rectangle(GetBounds().Left - (int)Config.CameraX, GetBounds().Top - (int)Config.CameraY, (int)Size.X, (int)Size.Y);
             Config.Batch.Draw(Config.PixelTexture, colliderRect, Color.Red * 0.5f);

@@ -14,11 +14,10 @@ public class Config
     public static int WindowHeight { get; set; } = 768;
     public static GameTime Time { get; set; }
     public static float GameScale { get; set; } = 3f;
-
     public static Vector2 GravityScale { get; set; } = new Vector2(0f, 30f);
-
     public static float CameraX { get; set; } = 0f;
     public static float CameraY { get; set; } = 0f;
+    public static bool DebugMode { get; set; } = false;
     
     public static Texture2D PixelTexture { get; private set; }
     
