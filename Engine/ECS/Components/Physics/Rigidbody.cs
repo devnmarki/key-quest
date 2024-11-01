@@ -12,7 +12,7 @@ public class Rigidbody : Component
     public float Mass { get; set; } = 1f;
     public bool UseGravity { get; set; } = true;
 
-    public Dictionary<string, Action> CollisionActions { get; set; }
+    public Dictionary<string, Action<GameObject>> CollisionActions { get; set; }
     public Action<GameObject> OnCollision { get; set; }
 
     public List<Type> CollisionIgnoreList { get; set; } = new List<Type>();
@@ -22,14 +22,14 @@ public class Rigidbody : Component
         Mass = mass;
         UseGravity = useGravity;
 
-        CollisionActions = new Dictionary<string, Action>()
+        CollisionActions = new Dictionary<string, Action<GameObject>>()
         {
-            { "horizontal", () => {} },
-            { "vertical", () => {} },
-            { "top", () => {} },
-            { "bottom", () => {} },
-            { "left", () => {} },
-            { "right", () => {} },
+            { "horizontal", other => {} },
+            { "vertical", other => {} },
+            { "top", other => {} },
+            { "bottom", other => {} },
+            { "left", other => {} },
+            { "right", other => {} },
         };
     }
 
@@ -60,7 +60,8 @@ public class Rigidbody : Component
 
     private void CheckCollision(Axis axis)
     {
-        foreach (var gameObject in SceneManager.CurrentScene.GameObjects)
+        var gameObjects = new List<GameObject>(SceneManager.CurrentScene.GameObjects);
+        foreach (var gameObject in gameObjects)
         {
             if (gameObject != GameObject)
             {
@@ -82,49 +83,56 @@ public class Rigidbody : Component
     
     private void HandleCollision(BoxCollider current, BoxCollider other, Axis axis)
     {
-        // Check if the type of the other GameObject is in the ignore list
         bool isIgnoredType = CollisionIgnoreList.Contains(other.GameObject.GetType());
     
-        // Call collision actions but skip position adjustment if type is ignored
         if (axis == Axis.Horizontal)
         {
-            if (!isIgnoredType)
+            if (current.GetBounds().Right >= other.GetBounds().Left && current.GetBounds().Left <= other.GetBounds().Left)
             {
-                if (current.GetBounds().Right >= other.GetBounds().Left && current.GetBounds().Left <= other.GetBounds().Left)
-                {
+                if (!isIgnoredType)
                     GameObject.Transform.Position.X = other.GameObject.Transform.Position.X - current.Size.X - current.Offset.X + other.Offset.X;
-                    CollisionActions["right"]();
-                }
-
-                if (current.GetBounds().Left <= other.GetBounds().Right && current.GetBounds().Right >= other.GetBounds().Right)
-                {
-                    GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X - current.Offset.X + other.Offset.X;
-                    CollisionActions["left"]();
-                }
+                
+                other.CollisionSide = Sides.Left;
+                CollisionActions["right"](other.GameObject);
             }
-        
-            CollisionActions["horizontal"]();
+
+            if (current.GetBounds().Left <= other.GetBounds().Right && current.GetBounds().Right >= other.GetBounds().Right)
+            {
+                if (!isIgnoredType)
+                    GameObject.Transform.Position.X = other.GameObject.Transform.Position.X + other.Size.X - current.Offset.X + other.Offset.X;
+                
+                other.CollisionSide = Sides.Right;
+                CollisionActions["left"](other.GameObject);
+            }
+    
+            if (!isIgnoredType)
+                CollisionActions["horizontal"](other.GameObject);
         }
         else
         {
+            if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top - 0.1f)
+            {
+                if (!isIgnoredType)
+                    GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y - current.Offset.Y + other.Offset.Y - 0.1f;
+                
+                other.CollisionSide = Sides.Top;
+                CollisionActions["bottom"](other.GameObject);
+            }
+
+            if (current.GetBounds().Top <= other.GetBounds().Bottom && current.GetBounds().Bottom >= other.GetBounds().Bottom)
+            {
+                if (!isIgnoredType)
+                    GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y - current.Offset.Y + other.Offset.Y;
+                
+                other.CollisionSide = Sides.Bottom;
+                CollisionActions["top"](other.GameObject);
+            }
+
             if (!isIgnoredType)
             {
-                if (current.GetBounds().Bottom >= other.GetBounds().Top && current.GetBounds().Top <= other.GetBounds().Top - 0.1f)
-                {
-                    GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y - current.Size.Y - current.Offset.Y + other.Offset.Y - 0.1f;
-                    CollisionActions["bottom"]();
-                }
-
-                if (current.GetBounds().Top <= other.GetBounds().Bottom && current.GetBounds().Bottom >= other.GetBounds().Bottom)
-                {
-                    GameObject.Transform.Position.Y = other.GameObject.Transform.Position.Y + other.Size.Y - current.Offset.Y + other.Offset.Y;
-                    CollisionActions["top"]();
-                }
-
                 Velocity.Y = 0f;
+                CollisionActions["vertical"](other.GameObject);
             }
-        
-            CollisionActions["vertical"]();
         }
     }
 

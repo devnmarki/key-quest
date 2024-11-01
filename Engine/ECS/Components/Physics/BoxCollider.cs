@@ -1,4 +1,5 @@
 using Key_Quest.Engine.Input;
+using Key_Quest.Engine.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -9,6 +10,8 @@ public class BoxCollider : Component
 {
     public Vector2 Size { get; set; }
     public Vector2 Offset { get; set; }
+
+    public Sides CollisionSide { get; set; } = Sides.None;
     
     public BoxCollider(Vector2 size)
     {

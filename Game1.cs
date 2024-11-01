@@ -71,6 +71,9 @@ public class Game1 : Game
         if (KeyboardHandler.IsPressed(Keys.Tab))
             Config.DebugMode = !Config.DebugMode;
         
+        if (KeyboardHandler.IsPressed(Keys.R))
+            SceneManager.RefreshCurrentScene();
+        
         SceneManager.UpdateCurrentScene();
 
         base.Update(gameTime);

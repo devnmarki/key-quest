@@ -35,9 +35,11 @@ public class Scene
 
     public virtual void Update()
     {
-        foreach (GameObject gameObject in _gameObjects)
+        var gameObjectsCopy = new List<GameObject>(_gameObjects);
+        foreach (GameObject gameObject in gameObjectsCopy)
         {
-            foreach (Component component in gameObject.Components)
+            var componentsCopy = new List<Component>(gameObject.Components);
+            foreach (Component component in componentsCopy)
             {
                 component.OnUpdate();
             }
@@ -46,9 +48,11 @@ public class Scene
 
     public virtual void Render()
     {
-        foreach (GameObject gameObject in _gameObjects)
+        var gameObjectCopy = new List<GameObject>(_gameObjects);
+        foreach (GameObject gameObject in gameObjectCopy)
         {
-            foreach (Component component in gameObject.Components)
+            var componentsCopy = new List<Component>(gameObject.Components);
+            foreach (Component component in componentsCopy)
             {
                 component.OnDraw();
             }
