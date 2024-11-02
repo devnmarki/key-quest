@@ -38,8 +38,6 @@ public class KnightComponent : Component
         
         HandleCollisionIgnoreList();
 
-        _moveSpeed = 300f;
-
         _rb.OnCollision = OnCollision;
     }
 
@@ -53,6 +51,8 @@ public class KnightComponent : Component
         _rb.CollisionActions["bottom"] = other => _isGrounded = true;
         
         HandleAnimations();
+
+        _moveSpeed = 300f;
 
         _rb.UseGravity = true;
     }
@@ -152,7 +152,7 @@ public class KnightComponent : Component
             SceneManager.ChangeScene(door.MapObject.Properties["Level"]);
         
         if (other is Ladders ladders)
-            ClimbLadders(ladders);
+            ClimbLadders();
     }
 
     private void Pickup(Key key)
@@ -163,9 +163,11 @@ public class KnightComponent : Component
         SceneManager.CurrentScene.RemoveGameObject(key);
     }
 
-    private void ClimbLadders(Ladders ladders)
+    private void ClimbLadders()
     {
         _rb.UseGravity = false;
+        _isGrounded = true;
+        _moveSpeed = 150f;
 
         _rb.Velocity = new Vector2(_rb.Velocity.X, _input.Y * _climbSpeed);
 

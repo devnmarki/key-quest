@@ -25,6 +25,8 @@ public class EnemyComponent : Component
         _rb = GameObject.GetComponent<Rigidbody>();
 
         _rb.OnCollision = HandleCollision;
+        _rb.CollisionIgnoreList.Add(typeof(Key));
+        _rb.CollisionIgnoreList.Add(typeof(Door));
     }
 
     public override void OnUpdate()

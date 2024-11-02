@@ -15,6 +15,8 @@ namespace Key_Quest.Sandbox.Components.Enemies;
 
 public class UndeadKnightComponent : Component
 {
+    private Random _rnd = new Random();
+    
     // Components
     private EnemyComponent _enemyController;
     private Rigidbody _rb;
@@ -23,12 +25,12 @@ public class UndeadKnightComponent : Component
 
     // Patrolling AI
     private float _speed = 100f;
-    private int _currentMovePointIndex = 0;
+    private int _currentMovePointIndex;
     private float _idleTime = 2f;
     private float _idleTimer;
     private List<Vector2> _movePoints = new List<Vector2>();
     private bool _flip = false;
-    private Directions _direction = Directions.Right;
+    private Directions _direction;
     
     // Attacking AI
     public GameObject Shield { get; set; }
@@ -36,22 +38,23 @@ public class UndeadKnightComponent : Component
     public override void OnStart()
     {
         base.OnStart();
-
+        
         _enemyController = GameObject.GetComponent<EnemyComponent>();
         _rb = GameObject.GetComponent<Rigidbody>();
         _sr = GameObject.GetComponent<SpriteRenderer>();
         _anim = GameObject.GetComponent<Animator>();
 
-        _enemyController.State = EnemyStates.Idle;
+        _enemyController.State = EnemyStates.Patrol;
         
         _enemyController.StateActions[EnemyStates.Idle] = Idle;
         _enemyController.StateActions[EnemyStates.Patrol] = Patrol;
         
         _movePoints.Add(GameObject.Transform.Position);
         _movePoints.Add(new Vector2(GameObject.Transform.Position.X + (float)GameObject.MapObject.Width * Config.GameScale, GameObject.Transform.Position.Y));
-
-        GameObject.Transform.Position = _movePoints[0];
-
+        
+        _currentMovePointIndex = _rnd.Next(_movePoints.Count);
+        GameObject.Transform.Position = _movePoints[_currentMovePointIndex];
+        
         _rb.CollisionIgnoreList.Add(typeof(Knight));
     }
 
@@ -62,11 +65,6 @@ public class UndeadKnightComponent : Component
         _sr.Flip = _flip;
 
         _anim.PlayAnimation(GameObject.Transform.Position == _movePoints[_currentMovePointIndex] ? "idle" : "walk");
-
-        if (GameObject.Transform.Position == _movePoints[0])
-            _direction = Directions.Right;
-        else if (GameObject.Transform.Position == _movePoints[1])
-            _direction = Directions.Left;
 
         HandleShield();
     }
@@ -96,7 +94,16 @@ public class UndeadKnightComponent : Component
 
         if (GameObject.Transform.Position == _movePoints[_currentMovePointIndex])
         {
-            _flip = _direction != Directions.Left;
+            if (GameObject.Transform.Position == _movePoints[0])
+                _direction = Directions.Right;
+            else if (GameObject.Transform.Position == _movePoints[1])
+                _direction = Directions.Left;
+            
+            if (_direction == Directions.Right)
+                _flip = false;
+            else
+                _flip = true;
+            
             _enemyController.State = EnemyStates.Idle;
         }
     }
