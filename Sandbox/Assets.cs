@@ -1,6 +1,7 @@
 using System;
 using Key_Quest.Engine;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Key_Quest.Sandbox;
@@ -24,6 +25,20 @@ public static class Assets
         {
             public static Texture2D Key { get; set; } = Config.Content.Load<Texture2D>("sprites/items/key");
             public static Texture2D Shield { get; set; } = Config.Content.Load<Texture2D>("sprites/items/weapons/shield");
+        }
+    }
+
+    public static class Sounds
+    {
+        public static SoundEffect Jump { get; set; }
+        public static SoundEffect KeyPickup { get; set; }
+        public static SoundEffect Death { get; set; }
+
+        public static void LoadSounds()
+        {
+            Jump = Config.Content.Load<SoundEffect>("sfx/jump");
+            KeyPickup = Config.Content.Load<SoundEffect>("sfx/key_pickup");
+            Death = Config.Content.Load<SoundEffect>("sfx/death");
         }
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/tilesets/dungeon_tileset.png</SourceFile>
-  <SourceTime>2024-10-29T14:05:36.2486536+01:00</SourceTime>
+  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/../../../../../Game Art/Key Quest/tilesets/dungeon_tileset.png</SourceFile>
+  <SourceTime>2024-11-02T11:35:09.2960957+01:00</SourceTime>
   <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/tilesets/dungeon_tileset.xnb</DestFile>
-  <DestTime>2024-11-01T13:38:44.5688513+01:00</DestTime>
+  <DestTime>2024-11-02T21:21:58.8807812+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="21">
+ <tileset firstgid="1" source="dungeon_tileset.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="16" height="16">
+  <data encoding="csv">
+20,14,14,14,14,14,14,14,14,14,14,14,14,14,14,21,
+15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+0,0,0,0,0,0,0,0,19,0,0,0,0,19,0,7,
+0,0,0,19,0,0,0,0,0,0,0,0,0,0,0,7,
+3,2,2,2,2,2,3,0,0,0,0,19,0,0,0,7,
+9,8,8,8,8,8,9,0,0,12,0,0,0,0,0,7,
+9,8,8,8,8,8,9,19,0,12,1,2,2,2,2,7,
+9,14,14,14,14,14,15,0,0,12,13,14,14,14,14,7,
+9,0,0,0,0,0,0,0,0,12,0,0,0,0,0,7,
+9,0,0,19,0,0,0,0,0,12,0,0,19,0,0,7,
+9,0,0,0,0,0,0,19,0,12,0,0,0,0,0,7,
+9,2,3,0,0,1,2,2,2,2,2,2,2,2,2,7,
+9,14,15,0,0,13,14,14,14,14,14,14,14,14,14,7,
+9,0,0,0,0,0,0,19,0,0,0,0,0,0,0,7,
+9,0,19,0,0,0,0,0,0,0,0,0,19,0,0,7,
+26,2,2,2,2,2,2,2,2,2,2,2,2,2,2,27
+</data>
+ </layer>
+ <objectgroup id="2" name="Collision">
+  <object id="5" x="16" y="64" width="96" height="64"/>
+  <object id="12" x="160" y="96" width="80" height="32"/>
+  <object id="13" x="16" y="176" width="32" height="32"/>
+  <object id="14" x="80" y="176" width="160" height="32"/>
+  <object id="6" x="0" y="64" width="16" height="192"/>
+  <object id="7" x="0" y="0" width="16" height="32"/>
+  <object id="9" x="-16" y="16" width="16" height="64"/>
+  <object id="8" x="16" y="0" width="224" height="16"/>
+  <object id="11" x="16" y="240" width="224" height="16"/>
+  <object id="10" x="240" y="0" width="16" height="256"/>
+ </objectgroup>
+ <objectgroup id="3" name="Game Objects">
+  <object id="1" name="Knight" x="32" y="32">
+   <point/>
+  </object>
+  <object id="3" name="Ladders" x="144" y="80" width="16" height="96"/>
+  <object id="16" name="Undead Knight" x="176" y="80" width="48" height="3.04545">
+   <properties>
+    <property name="Enemy" value="Undead Knight"/>
+   </properties>
+  </object>
+  <object id="17" name="Undead Knight" x="112" y="160" width="80" height="3.04545">
+   <properties>
+    <property name="Enemy" value="Undead Knight"/>
+   </properties>
+  </object>
+  <object id="18" name="Undead Knight" x="32" y="224" width="64" height="3.04545">
+   <properties>
+    <property name="Enemy" value="Undead Knight"/>
+   </properties>
+  </object>
+  <object id="19" name="Door" x="208" y="224">
+   <properties>
+    <property name="Level" value="main_menu"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" name="Key" x="192" y="80">
+   <point/>
+  </object>
+ </objectgroup>
+</map>

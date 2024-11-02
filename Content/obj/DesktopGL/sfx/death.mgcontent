@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sfx/death.wav</SourceFile>
+  <SourceTime>2024-11-02T21:20:58.4276401+01:00</SourceTime>
+  <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sfx/death.xnb</DestFile>
+  <DestTime>2024-11-02T21:22:01.3971769+01:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2022-07-26T13:44:56+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
