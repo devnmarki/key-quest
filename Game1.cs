@@ -48,6 +48,7 @@ public class Game1 : Game
         TilemapManager.AddGameObjectToLoad("Undead Knight", () => new UndeadKnight());
         TilemapManager.AddGameObjectToLoad("Key", (() => new Key()));
         TilemapManager.AddGameObjectToLoad("Door", () => new Door());
+        TilemapManager.AddGameObjectToLoad("Ladders", () => new Ladders());
         
         SceneManager.ChangeScene("default");
     }

@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../../../Game Art/Key Quest/tilesets/dungeon_tileset.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../../../Game Art/Key Quest/tilesets/dungeon_tileset.png;sprites/tilesets/dungeon_tileset.png
+
 #begin sprites/enemies/undead_knight_spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -84,18 +96,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/test/bob.png
-
-#begin sprites/tilesets/dungeon_tileset.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:sprites/tilesets/dungeon_tileset.png
 
 #begin sprites/tilesets/tileset.png
 /importer:TextureImporter

@@ -19,12 +19,14 @@ public class KnightComponent : Component
     private SpriteRenderer _sr;
     private Animator _anim;
     
-    private float _input;
+    private Vector2 _input = Vector2.Zero;
     private float _moveSpeed;
     private float _jumpForce = 800f;
     private bool _isGrounded = false;
 
     private float _deathTimer = 0f;
+
+    private float _climbSpeed = 200f;
     
     public override void OnStart()
     {
@@ -51,6 +53,8 @@ public class KnightComponent : Component
         _rb.CollisionActions["bottom"] = other => _isGrounded = true;
         
         HandleAnimations();
+
+        _rb.UseGravity = true;
     }
 
     private void HandleInputs()
@@ -59,16 +63,23 @@ public class KnightComponent : Component
 
         if (KeyboardHandler.IsDown(Keys.Left))
         {
-            _input = -1;
+            _input.X = -1;
         } 
         else if (KeyboardHandler.IsDown(Keys.Right))
         {
-            _input = 1;
+            _input.X = 1;
         }
         else
         {
-            _input = 0;
+            _input.X = 0;
         }
+        
+        if (KeyboardHandler.IsDown(Keys.Up))
+            _input.Y = -1f;
+        else if (KeyboardHandler.IsDown(Keys.Down))
+            _input.Y = 1f;
+        else
+            _input.Y = 0f;
 
         if (KeyboardHandler.IsDown(Keys.Z) && _isGrounded)
         {
@@ -78,11 +89,11 @@ public class KnightComponent : Component
 
     private void Move()
     {
-        _rb.Velocity = new Vector2(_input * _moveSpeed, _rb.Velocity.Y);
+        _rb.Velocity = new Vector2(_input.X * _moveSpeed, _rb.Velocity.Y);
 
-        if (_input < 0f)
+        if (_input.X < 0f)
             _sr.Flip = true;
-        else if (_input > 0f)
+        else if (_input.X > 0f)
             _sr.Flip = false;
     }
 
@@ -95,7 +106,7 @@ public class KnightComponent : Component
 
     private void HandleAnimations()
     {
-        _anim.PlayAnimation(_input != 0 ? "walk" : "idle");
+        _anim.PlayAnimation(_input.X != 0 ? "walk" : "idle");
         
         if (!_isGrounded) 
             _anim.PlayAnimation("jump");
@@ -113,6 +124,7 @@ public class KnightComponent : Component
         
         _rb.CollisionIgnoreList.Add(typeof(Door));
         _rb.CollisionIgnoreList.Add(typeof(Key));
+        _rb.CollisionIgnoreList.Add(typeof(Ladders));
     }
 
     public void Respawn()
@@ -138,6 +150,9 @@ public class KnightComponent : Component
 
         if (other is Door door && !door.GetComponent<DoorComponent>().Locked)
             SceneManager.ChangeScene(door.MapObject.Properties["Level"]);
+        
+        if (other is Ladders ladders)
+            ClimbLadders(ladders);
     }
 
     private void Pickup(Key key)
@@ -146,5 +161,14 @@ public class KnightComponent : Component
         door.GetComponent<DoorComponent>().Locked = false;
         
         SceneManager.CurrentScene.RemoveGameObject(key);
+    }
+
+    private void ClimbLadders(Ladders ladders)
+    {
+        _rb.UseGravity = false;
+
+        _rb.Velocity = new Vector2(_rb.Velocity.X, _input.Y * _climbSpeed);
+
+        _anim.PlayAnimation("idle");
     }
 }
