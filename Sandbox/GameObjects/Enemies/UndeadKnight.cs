@@ -26,7 +26,7 @@ public class UndeadKnight : GameObject
         
         CreateShield();
         
-        AddComponent(new SpriteRenderer(Assets.Spritesheets.Enemies.UndeadKnight, 0) { LayerDepth = 500 });
+        AddComponent(new SpriteRenderer(Assets.Spritesheets.Enemies.UndeadKnight, 0) { LayerDepth = Globals.Layers.Enemies });
         AddComponent(new BoxCollider(new Vector2(12 * Config.GameScale, 16 * Config.GameScale)));
         AddComponent(new Rigidbody());
         AddComponent(new Animator());

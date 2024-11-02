@@ -42,9 +42,12 @@ public class Game1 : Game
         
         SceneManager.AddScene("default", new DefaultScene());
         SceneManager.AddScene("main_menu", new MainMenuScene());
+        SceneManager.AddScene("level_1", new Level1Scene());
         
         TilemapManager.AddGameObjectToLoad("Knight", () => new Knight());
         TilemapManager.AddGameObjectToLoad("Undead Knight", () => new UndeadKnight());
+        TilemapManager.AddGameObjectToLoad("Key", (() => new Key()));
+        TilemapManager.AddGameObjectToLoad("Door", () => new Door());
         
         SceneManager.ChangeScene("default");
     }

@@ -7,9 +7,7 @@ using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Engine.Input;
 using Key_Quest.Engine.SceneSystem;
 using Key_Quest.Sandbox.Components.Enemies;
-using Key_Quest.Sandbox.GameObjects.Enemies;
-using Key_Quest.Sandbox.GameObjects.Items.Weapons;
-using Key_Quest.Sandbox.Interfaces;
+using Key_Quest.Sandbox.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -39,6 +37,8 @@ public class KnightComponent : Component
         HandleCollisionIgnoreList();
 
         _moveSpeed = 300f;
+
+        _rb.OnCollision = OnCollision;
     }
 
     public override void OnUpdate()
@@ -110,6 +110,9 @@ public class KnightComponent : Component
             if (!_rb.CollisionIgnoreList.Contains(go.GetType()))
                 _rb.CollisionIgnoreList.Add(go.GetType());
         }
+        
+        _rb.CollisionIgnoreList.Add(typeof(Door));
+        _rb.CollisionIgnoreList.Add(typeof(Key));
     }
 
     public void Respawn()
@@ -126,5 +129,22 @@ public class KnightComponent : Component
             SceneManager.RefreshCurrentScene();
             _deathTimer = 0f;
         }
+    }
+
+    private void OnCollision(GameObject other)
+    {
+        if (other is Key key)
+            Pickup(key);
+
+        if (other is Door door && !door.GetComponent<DoorComponent>().Locked)
+            SceneManager.ChangeScene(door.MapObject.Properties["Level"]);
+    }
+
+    private void Pickup(Key key)
+    {
+        if (GameObject.FindGameObjectByTag("door") is not Door door) return;
+        door.GetComponent<DoorComponent>().Locked = false;
+        
+        SceneManager.CurrentScene.RemoveGameObject(key);
     }
 }

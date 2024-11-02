@@ -1,3 +1,4 @@
+using System;
 using Key_Quest.Engine.ECS;
 using Key_Quest.Engine.ECS.Components;
 
@@ -9,6 +10,6 @@ public class Shield : GameObject
     {
         base.Init();
         
-        AddComponent(new SpriteRenderer(Assets.Sprites.Items.Shield) { LayerDepth = 499});
+        AddComponent(new SpriteRenderer(Assets.Sprites.Items.Shield) { LayerDepth = Globals.Layers.Items });
     }
 }
