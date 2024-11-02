@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Key_Quest.Engine.ECS;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Physics;
+using Key_Quest.Engine.Utils;
 using Key_Quest.Sandbox.Enums;
 using Key_Quest.Sandbox.GameObjects;
 using Key_Quest.Sandbox.Interfaces;
@@ -22,6 +23,7 @@ public class EnemyComponent : Component
         base.OnStart();
 
         _rb = GameObject.GetComponent<Rigidbody>();
+
         _rb.OnCollision = HandleCollision;
     }
 
@@ -31,15 +33,13 @@ public class EnemyComponent : Component
 
         if (StateActions.TryGetValue(State, out var action))
             StateActions[State]();
-        
-        
     }
 
     private void HandleCollision(GameObject other)
     {
-        if (other is IDamageable damageable)
+        if (other is Knight knight)
         {
-            damageable.TakeDamage(1);
+            knight.GetComponent<KnightComponent>()?.Respawn();
         }
     }
 }

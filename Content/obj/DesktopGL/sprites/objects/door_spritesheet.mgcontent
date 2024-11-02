@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/enemies/undead_knight_spritesheet.png</SourceFile>
-  <SourceTime>2024-11-01T14:34:10.4190584+01:00</SourceTime>
-  <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/enemies/undead_knight_spritesheet.xnb</DestFile>
-  <DestTime>2024-11-01T19:17:31.8614058+01:00</DestTime>
+  <SourceFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/objects/door_spritesheet.png</SourceFile>
+  <SourceTime>2024-11-01T19:12:37.1780703+01:00</SourceTime>
+  <DestFile>D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/sprites/objects/door_spritesheet.xnb</DestFile>
+  <DestTime>2024-11-01T19:17:31.9500172+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

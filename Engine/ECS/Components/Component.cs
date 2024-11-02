@@ -6,7 +6,7 @@ public class Component
 {
     public GameObject GameObject { get; internal set; }
     
-    public Component()
+    protected Component()
     {
         
     }

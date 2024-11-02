@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Key_Quest.Engine.ECS.Components.Graphics;
@@ -43,6 +44,8 @@ public class Animator : Component
     {
         base.OnDraw();
 
+        if (CurrentAnimation == null) return;
+        
         if (GameObject.HasComponent<SpriteRenderer>())
         {
             SpriteRenderer sr = GameObject.GetComponent<SpriteRenderer>();

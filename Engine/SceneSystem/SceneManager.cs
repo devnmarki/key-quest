@@ -22,11 +22,16 @@ public class SceneManager
 
     public static void RefreshCurrentScene()
     {
+        if (_currentScene == null) return;
+        
         _currentScene.GameObjects.Clear();
         _currentScene.Start();
-        foreach (GameObject gameObject in _currentScene.GameObjects)
+
+        var gameObjects = new List<GameObject>(_currentScene.GameObjects);
+        foreach (GameObject gameObject in gameObjects)
         {
-            foreach (Component component in gameObject.Components)
+            var components = new List<Component>(gameObject.Components);
+            foreach (Component component in components)
             {
                 component.OnStart();
             }

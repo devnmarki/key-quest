@@ -1,4 +1,5 @@
 using System;
+using Key_Quest.Engine;
 using Key_Quest.Engine.ECS;
 using Key_Quest.Engine.ECS.Components;
 using Key_Quest.Engine.ECS.Components.Graphics;
@@ -6,25 +7,25 @@ using Key_Quest.Engine.ECS.Components.Physics;
 using Key_Quest.Engine.Input;
 using Key_Quest.Engine.SceneSystem;
 using Key_Quest.Sandbox.Components.Enemies;
-using Key_Quest.Sandbox.GameObjects.Enemies;
-using Key_Quest.Sandbox.GameObjects.Items.Weapons;
-using Key_Quest.Sandbox.Interfaces;
+using Key_Quest.Sandbox.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Key_Quest.Sandbox.Components;
 
-public class KnightComponent : Component, IDamageable
+public class KnightComponent : Component
 {
     private Rigidbody _rb;
     private SpriteRenderer _sr;
     private Animator _anim;
     
     private float _input;
+    private float _moveSpeed;
+    private float _jumpForce = 800f;
     private bool _isGrounded = false;
 
-    public int Health { get; set; } = 1;
-
+    private float _deathTimer = 0f;
+    
     public override void OnStart()
     {
         base.OnStart();
@@ -32,8 +33,12 @@ public class KnightComponent : Component, IDamageable
         _rb = GameObject.GetComponent<Rigidbody>();
         _sr = GameObject.GetComponent<SpriteRenderer>();
         _anim = GameObject.GetComponent<Animator>();
-
+        
         HandleCollisionIgnoreList();
+
+        _moveSpeed = 300f;
+
+        _rb.OnCollision = OnCollision;
     }
 
     public override void OnUpdate()
@@ -43,7 +48,7 @@ public class KnightComponent : Component, IDamageable
         HandleInputs();
         Move();
 
-        _rb.CollisionActions["bottom"] = () => _isGrounded = true;
+        _rb.CollisionActions["bottom"] = other => _isGrounded = true;
         
         HandleAnimations();
     }
@@ -73,8 +78,7 @@ public class KnightComponent : Component, IDamageable
 
     private void Move()
     {
-        float moveSpeed = 300f;
-        _rb.Velocity = new Vector2(_input * moveSpeed, _rb.Velocity.Y);
+        _rb.Velocity = new Vector2(_input * _moveSpeed, _rb.Velocity.Y);
 
         if (_input < 0f)
             _sr.Flip = true;
@@ -86,8 +90,7 @@ public class KnightComponent : Component, IDamageable
     {
         _isGrounded = false;
         
-        float jumpForce = 800f;
-        _rb.Velocity = new Vector2(_rb.Velocity.X, -jumpForce);
+        _rb.Velocity = new Vector2(_rb.Velocity.X, -_jumpForce);
     }
 
     private void HandleAnimations()
@@ -107,12 +110,41 @@ public class KnightComponent : Component, IDamageable
             if (!_rb.CollisionIgnoreList.Contains(go.GetType()))
                 _rb.CollisionIgnoreList.Add(go.GetType());
         }
+        
+        _rb.CollisionIgnoreList.Add(typeof(Door));
+        _rb.CollisionIgnoreList.Add(typeof(Key));
     }
 
-    public void TakeDamage(int value)
+    public void Respawn()
     {
-        Health--;
-        if (Health <= 0)
-            Console.WriteLine("Player is dead");
+        _deathTimer += (float)Config.Time.ElapsedGameTime.TotalSeconds;
+        _moveSpeed = 0f;
+        _rb.Velocity = Vector2.Zero;
+        _jumpForce = 0f;
+        
+        // Play death animation
+
+        if (_deathTimer >= 0.5f)
+        {
+            SceneManager.RefreshCurrentScene();
+            _deathTimer = 0f;
+        }
+    }
+
+    private void OnCollision(GameObject other)
+    {
+        if (other is Key key)
+            Pickup(key);
+
+        if (other is Door door && !door.GetComponent<DoorComponent>().Locked)
+            SceneManager.ChangeScene(door.MapObject.Properties["Level"]);
+    }
+
+    private void Pickup(Key key)
+    {
+        if (GameObject.FindGameObjectByTag("door") is not Door door) return;
+        door.GetComponent<DoorComponent>().Locked = false;
+        
+        SceneManager.CurrentScene.RemoveGameObject(key);
     }
 }
