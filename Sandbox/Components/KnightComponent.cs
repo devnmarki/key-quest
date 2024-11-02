@@ -133,14 +133,10 @@ public class KnightComponent : Component
         _moveSpeed = 0f;
         _rb.Velocity = Vector2.Zero;
         _jumpForce = 0f;
-        
-        // Play death animation
 
-        if (_deathTimer >= 0.5f)
-        {
-            SceneManager.RefreshCurrentScene();
-            _deathTimer = 0f;
-        }
+        Assets.Sounds.Death.Play();
+        
+        SceneManager.RefreshCurrentScene();
     }
 
     private void OnCollision(GameObject other)
@@ -151,7 +147,7 @@ public class KnightComponent : Component
         if (other is Door door && !door.GetComponent<DoorComponent>().Locked)
             SceneManager.ChangeScene(door.MapObject.Properties["Level"]);
         
-        if (other is Ladders ladders)
+        if (other is Ladders)
             ClimbLadders();
     }
 
@@ -159,6 +155,8 @@ public class KnightComponent : Component
     {
         if (GameObject.FindGameObjectByTag("door") is not Door door) return;
         door.GetComponent<DoorComponent>().Locked = false;
+
+        Assets.Sounds.KeyPickup.Play();
         
         SceneManager.CurrentScene.RemoveGameObject(key);
     }

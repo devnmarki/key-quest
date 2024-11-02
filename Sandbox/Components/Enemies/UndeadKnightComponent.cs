@@ -99,10 +99,7 @@ public class UndeadKnightComponent : Component
             else if (GameObject.Transform.Position == _movePoints[1])
                 _direction = Directions.Left;
             
-            if (_direction == Directions.Right)
-                _flip = false;
-            else
-                _flip = true;
+            _flip = _direction != Directions.Right;
             
             _enemyController.State = EnemyStates.Idle;
         }

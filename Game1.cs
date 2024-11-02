@@ -3,6 +3,7 @@ using Key_Quest.Engine;
 using Key_Quest.Engine.Input;
 using Key_Quest.Engine.LevelEditor;
 using Key_Quest.Engine.SceneSystem;
+using Key_Quest.Sandbox;
 using Key_Quest.Sandbox.GameObjects;
 using Key_Quest.Sandbox.GameObjects.Enemies;
 using Key_Quest.Sandbox.Scenes;
@@ -40,9 +41,11 @@ public class Game1 : Game
         Config.Graphics = GraphicsDevice;
         Config.LoadContent();
         
+        Assets.Sounds.LoadSounds();
+        
         SceneManager.AddScene("default", new DefaultScene());
         SceneManager.AddScene("main_menu", new MainMenuScene());
-        SceneManager.AddScene("level_1", new Level1Scene());
+        SceneManager.AddScene("level_2", new Level2Scene());
         
         TilemapManager.AddGameObjectToLoad("Knight", () => new Knight());
         TilemapManager.AddGameObjectToLoad("Undead Knight", () => new UndeadKnight());

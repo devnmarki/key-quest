@@ -1,5 +1,8 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/../../../../../Game Art/Key Quest/tilesets/dungeon_tileset.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/tilesets/dungeon_tileset.xnb","TextureProcessor","Texture2DContent",1091,30805,0.174734
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sfx/death.wav","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sfx/death.xnb","SoundEffectProcessor","SoundEffectContent",25516,25577,2.7713718
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sfx/jump.wav","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sfx/jump.xnb","SoundEffectProcessor","SoundEffectContent",24522,24583,1.9137061
+"D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sfx/key_pickup.wav","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sfx/key_pickup.xnb","SoundEffectProcessor","SoundEffectContent",29046,29107,2.0221708
 "D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/enemies/undead_knight_spritesheet.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/enemies/undead_knight_spritesheet.xnb","TextureProcessor","Texture2DContent",1015,49237,0.3399231
 "D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/items/key.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/items/key.xnb","TextureProcessor","Texture2DContent",199,1109,0.2873977
 "D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/sprites/items/weapons/shield.png","D:/Dev/Game Dev/C# - MonoGame/Key Quest/Content/bin/DesktopGL/Content/sprites/items/weapons/shield.xnb","TextureProcessor","Texture2DContent",214,1109,0.0264516

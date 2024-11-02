@@ -33,3 +33,6 @@ D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\enemies
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\items\weapons\shield.xnb
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\objects\door_spritesheet.xnb
 D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sprites\items\key.xnb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sfx\death.xnb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sfx\jump.xnb
+D:\Dev\Game Dev\C# - MonoGame\Key Quest\bin\Debug\net6.0\Content\sfx\key_pickup.xnb
